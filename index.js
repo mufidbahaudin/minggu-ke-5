@@ -15,26 +15,19 @@ app.use(jsonParser)
 app.use(urlencodedParser)
 
 app.get('/', (req, res) => {
-  res.json('Hello World!')
+  res.json('website A')
 })
-
-app.post('/login', (req, res) => {
-    const username = 'mufid'
-    const password = '221202'
-
-    //return semua kondisi
-    if(req.body.username !== username) {
-        res.json({
-            status : 'error, username not found'})
+app.post('/github-event5', (req, res) => {
+  if (req.body.secret !== 'rahasia123') {
+    console.log('Wrong secret')
+      return res.status(400).json()
     }
 
-    if(req.body.password !== password) {
-        res.json({status: 'error, wrong password'})
-}
-
-
-    res.json({ status: 'success'})
+    console.log('Incoming Webhook')
+    res.json()
 })
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
